@@ -1,0 +1,77 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content_checkout %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card border-0 rounded-3 shadow-sm p-3" id="form-wrapper">
+                <form id="form">
+                    <div id="user-info">
+                        <h4>Thông tin người dùng</h4>
+                        <div class="mb-3">
+                            <input required class="form-control" type="text" name="name" placeholder="Họ tên">
+                        </div>
+                        <div class="mb-3">
+                            <input required class="form-control" type="email" name="email" placeholder="Email..">
+                        </div>
+                    </div>
+                    
+                    <div id="shipping-info">
+                        <hr>
+                        <h4>Thông tin thanh toán</h4>
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="address" placeholder="Số nhà">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="city" placeholder="Quận/Xã">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="state" placeholder="Tỉnh/Thành phố">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="country" placeholder="Zip code..">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <input id="form-button" class="btn btn-success btn-block" type="submit" value="Tiếp tục">
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card border-0 rounded-3 shadow-sm p-3">
+                <a class="btn btn-outline-dark mb-3" href="{% url 'cart' %}">&#x2190; Quay lại Giỏ hàng</a>
+                <hr>
+                <h3>Danh sách giỏ hàng</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Giá cả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+							<tr>
+								<td><a href="{% url 'detail' %}?id={{ item.product.id }}"><img class="row-image" src="{{ item.product.ImageURL }}" width="70" height="70"></a></td>
+								<td><a href="{% url 'detail' %}?id={{ item.product.id }}" style="text-decoration: none; color: black;">{{ item.product.name }}</a></td>
+								<td>{{ item.quantity }}</td>
+								<td>${{ item.get_total }}</td>
+							</tr>
+						{% endfor %}
+                    </tbody>
+                </table>
+                <h5 class="mt-3">Tổng số sản phẩm: {{ order.get_cart_items }}</h5>
+                <h5 class="mb-0">Tổng cộng tiền: ${{ order.get_cart_total | floatformat:2 }}</h5>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content_checkout %}

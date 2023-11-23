@@ -1,0 +1,68 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'app/css/styles.css' %}">
+    </head>
+    <body>
+        {% block register %}
+        <section class="vh-100 bg-image" style="background-image: url('{% static 'app/images/background.jpeg' %}')">
+            <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+                <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Tạo tài khoản</h2>
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example1cg">Tên người dùng</label>
+                                    {{ form.username }}
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example3cg">Địa chỉ email</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example1cg">Họ Tên đệm</label>
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example1cg">Tên</label>
+                                    {{ form.last_name }}
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example4cg">Mật khẩu</label>
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example4cdg">Nhập lại mật khẩu</label>
+                                    {{ form.password2 }}
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Đăng ký</button>
+                                </div>
+                                <p class="text-center text-muted mt-5 mb-0">Bạn đã có tài khoản?<a href="{% url 'login' %}" class="fw-bold text-body"><u>Đăng nhập ngay!</u></a></p>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]
+        
+        <script src="" async defer></script>
+        {% endblock register %}
+    </body>
+</html>

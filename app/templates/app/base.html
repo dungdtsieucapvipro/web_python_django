@@ -1,0 +1,244 @@
+{% load  static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="en">
+  <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--cs-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href-"{% static 'app/css/style.css' %}" rel="stylesheet" />
+        <link href-"{% static 'app/css/owl.carousel.css' %}" rel="stylesheet" />
+        <link href-"{% static 'app/css/all.min.css' %}" rel="stylesheet" />
+        <link href="stylesheet" type="text/css" href="{%static 'app/css/main.css' %}">
+        <!--js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script src="{% static 'app/js/owl.carousel.min.js' %}" > </script>
+        <script src="{% static 'app/js/all.min.js' %}" > </script> 
+        <script src="{% static 'app/js/myscript.js' %}" > </script> 
+        <script type="text/javascript">
+            var user ='{{request.user}}'
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            const csrftoken = getCookie('csrftoken');
+        </script>
+        
+        <title> Gundam Store Online</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+          body {
+              background-image: url("{% static 'app/images/background.jpeg' %}");
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+          }
+        </style>
+        <style>
+            body {
+              margin: 0;
+              padding: 0;
+              min-height: 100vh;
+              display: flex;
+              flex-direction: column;
+            }
+      
+            footer {
+              background-color: #333;
+              color: #fff;
+              text-align: center;
+              padding: 10px;
+            }
+      
+            .content {
+              flex-grow: 1;
+            }
+        </style>
+        <style>
+            /* CSS cho hiệu ứng hover */
+            .navbar-nav .nav-link {
+                transition: color 0.3s ease; /* Hiệu ứng màu sắc */
+            }
+            .navbar-nav .nav-link:hover {
+                color: red; /* Màu sẽ thay đổi khi di chuột qua */
+            }
+        </style>
+        <style>
+            /* Hiệu ứng drop shadow khi bấm vào phần User */
+            .user-dropdown {
+                position: relative;
+            }
+        
+            .user-dropdown .dropdown-menu {
+                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5); /* Shadow style */
+                transition: box-shadow 0.3s ease; /* Hiệu ứng chuyển đổi */
+                display: none; /* Ẩn dropdown ban đầu */
+            }
+        
+            .user-dropdown:hover .dropdown-menu {
+                display: block; /* Hiển thị dropdown khi di chuột qua */
+            }
+        </style>
+        
+        
+  </head>
+  <body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <!-- Logo và nút toggle -->
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'app/images/gundam_hihi.png' %}" width="70" height="80" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Mục Trang Chủ -->
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
+                            <i class="fas fa-home"></i> Trang Chủ
+                        </a>
+                    </li>
+                    <!-- Mục Phân khúc -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-list"></i> Phân khúc
+                        </a>
+                        
+                        <!-- Dropdown Phân Khúc -->
+                        <ul class="dropdown-menu">
+                            {% for i in categories %}
+                            <li><a class="dropdown-item" href="{% url 'category' %}?category={{i.slug}}">{{i.name}}</a></li>
+                            {% endfor %}
+                        </ul>    <!-- Hết Dropdown Phân khúc -->
+                    </li>
+                
+
+                    <!-- Giỏ hàng -->
+                    <div class="form-inline my-2 my-lg-0 ml-3">
+                        <a href="{% url 'cart' %}" class="btn btn-success position-relative">
+                            <i class="fas fa-shopping-cart"></i> <!-- Icon giỏ hàng -->
+                            <span id='cart-total' class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{ cartItems }}
+                            </span>
+                        </a>
+                    </div>
+
+                    
+                </ul>
+                
+                <!-- Chào User -->
+                <span class="mr-2 user-dropdown">
+                    {% if request.user.is_authenticated %}
+                        <i class="fas fa-user-circle"></i> <!-- Thay thế chữ "Chào!" bằng icon avatar -->
+                        <a href="#" class="text-decoration-none text-dark dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Chào! {{ request.user }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <!-- Các lựa chọn trong dropdown menu -->
+                            <li><a class="dropdown-item" href="#">Action 1</a></li>
+                            <li><a class="dropdown-item" href="#">Action 2</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Đăng Xuất</a></li>
+                        </ul>
+                    {% endif %}
+                </span>
+
+                <!-- Form tìm kiếm -->
+                <form class="d-flex" role="search" method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="&#xF002; Tìm kiếm" aria-label="Search" name="searched">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                
+            </div>
+            <!-- Mục Đăng Nhập và Đăng Ký -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if request.user.is_authenticated %}
+                    <!-- Nếu người dùng đã đăng nhập -->
+                    <div class="form-inline my-2 my-lg-0">
+                        
+                        <button class="btn btn-outline-danger mr-2">
+                            <i class="fas fa-sign-out-alt"></i> <!-- Icon Sign Out -->
+                            <a href="{% url 'logout' %}" class="text-decoration-none text-dark">Thoát</a>
+                        </button>
+                    </div>
+                {% else %}
+                    <!-- Nếu chưa có ai đăng nhập -->
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary" href="{% url 'login' %}" style="margin-right: 10px;">Đăng Nhập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-success" href="{% url 'register' %}">Đăng Ký</a>
+                    </li>
+                {% endif %}
+            </ul>
+            
+            
+            
+            
+        </div>
+    </nav>
+    <!-- Hết Header -->
+
+    <!-- Main Body -->
+    {% block banner_slider %} {% endblock banner_slider %}
+    {% block main-content %} {% endblock main-content %}
+    {% block cart_content %} {% endblock cart_content %}
+    {% block content_checkout %} {% endblock content_checkout %}
+    {% block register %} {% endblock register %}
+
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container-fluid bg-dark text-white p-4">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-12 text-center">
+                    <p class="mb-0">&copy; 2023 Gundam Store Online. Đã Đăng Ký Bản Quyền.</p>
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/haongtandung" class="text-white mx-2" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/?lang=vi" class="text-white mx-2" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/dungztrz_811/" class="text-white mx-2" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCnJL6L-4TjNWMJEp8mK-cOg" class="text-white mx-2" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+  
+    <script src="{% static 'app/js/cart.js' %}"> </script>
+  </body>
+</html>

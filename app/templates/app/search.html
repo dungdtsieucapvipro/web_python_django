@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+    {% block register %}
+    <h2 style="background-color: #f5f5f5; padding: 10px; text-align: center; margin-bottom: 20px;">
+        Tìm kiếm kết quả: <span style="color: #ff6600; font-weight: bold;">{{ searched }}</span>
+    </h2>
+    {% if keys %}
+        <div class="row" style="width:100%">
+            {% for product in keys %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="{{ product.ImageURL }}" alt="{{ product.name }}" width="400" height="400">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <div class="order-1">
+                                <a href="{% url 'detail' %}?id={{ product.id }}" class="btn btn-outline-secondary">
+                                    <i class="fas fa-eye"></i> Xem chi tiết
+                                </a>
+                                <button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">
+                                    <i class="fas fa-cart-plus"></i> Thêm
+                                </button>
+                            </div>
+                            <p class="card-text order-2"><strong><span class="text-danger">${{ product.price | floatformat:2 }}</span></strong></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+    <!-- Sử dụng thẻ <marquee> để tạo hiệu ứng chữ khi không tìm thấy sản phẩm -->
+    <div style="text-align: center;">
+        <h2 style="font-size: 30px; color: red; margin-bottom: 20px;">Không tìm thấy sản phẩm bạn cần.</h2>
+        <img src="{% static 'app/images/nothinghere.jpg' %}" alt="Ảnh mô tả không tìm thấy sản phẩm" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+    </div>
+        
+    {% endif %}
+    {% endblock register %}
+</body>
+</html>
